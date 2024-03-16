@@ -1,0 +1,27 @@
+Hubert Jackowski
+Zad 3.
+a)
+data <- read.csv2("mieszkania.csv")
+
+b)
+data[1:6, ]
+
+c)
+str(data)
+
+d)
+sum(data$Metraz)/length(data$Metraz)
+sum(data$Cena)/length(data$Cena)
+
+e)
+data <- cbind(data, data$Cena/data$Metraz)
+colnames(data) <- c(colnames(data)[1:5], "Cena za m2")
+
+f)
+subset(subset(data, Dzielnica == "Psie Pole"), Cena < 400000)
+
+g)
+subset(subset(data, Dzielnica == "Srodmiescie"), Metraz > 60)
+
+h)
+length(subset(subset(data, Cena < 350000), Metraz > 60))
