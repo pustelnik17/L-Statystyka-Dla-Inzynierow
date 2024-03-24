@@ -1,1 +1,35 @@
 Hubert Jackowski
+
+Zad 1.
+dbinom(5,6,0.5)
+1 - (dbinom(0,6,0.5) + dbinom(1,6,0.5) + dbinom(2,6,0.5))
+pbinom(4,6,0.5) - pbinom(1,6,0.5)
+X <- c(0:6)
+plot(X, dbinom(X, 6, 0.5), type="h")
+
+Zad Badania Kliniczne - faza II
+dbinom(80, 100, 0.7)
+pbinom(70, 100, 0.7)
+
+Zad 2.
+dpois(5,6)
+1 - (dpois(0,6) + dpois(1,6) + dpois(2,6) + dpois(3,6))
+ppois(5,6) - ppois(2,6)
+X <- c(0:30)
+plot(X, dpois(X,6), type="h")
+
+Zad 3.
+dbinom(27, 180, 1/6)
+1 - (dbinom(0, 180, 1/6) + dbinom(1, 180, 1/6) + dbinom(2, 180, 1/6) + dbinom(3, 180, 1/6))
+pbinom(29, 180, 1/6) - dbinom(29, 180, 1/6)
+pbinom(33, 180, 1/6) - pbinom(24, 180, 1/6)
+
+Zad 4.
+dpois(16, 17.5)
+1 - ppois(20, 17.5) + dpois(20, 17.5)
+ppois(12, 17.5) - dpois(12, 17.5)
+ppois(22, 17.5) - dpois(22, 17.5) - ppois(14, 17.5) + dpois(14, 17.5)
+
+Zad 5.
+plot(c(0:100), dbinom(c(0:100), 100, 0.02), type="h")
+lines(c(0:100), dpois(c(0:100), 2), col="red")
