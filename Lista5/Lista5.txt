@@ -1,0 +1,9 @@
+# Hubert Jackowski
+
+Zad 1.
+plot(runif(5000))
+plot(rnorm(3000, 100, 15))
+hist(runif(5000))
+hist(rnorm(3000, 100, 15))
+density(runif(5000))
+density(rnorm(3000, 100, 15))
