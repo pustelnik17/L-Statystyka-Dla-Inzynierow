@@ -12,19 +12,31 @@ sy[,1]<-pyc[,1]
 for (j in 2:n){
   sy[,j]<-sy[,j-1]+pyc[,j]
 }
+
+# wyświetlenie sx, sy
 sx
 sy
+
+# zdefiniowanie ilości losowań
 N<-1000
+
+# utworzenie wektorów na realizacje
 x_rea<-array(0,dim=N)
 y_rea<-array(0,dim=N)
+
+# trawers po wektorze [1:N]
 for (k in 1:N){
-  # generowanie x
+
+  # generowanie x z U[0,1]
   u<-runif(1)
   ii<-1
   while (u>sx[ii]){
     ii<-ii+1    
   }
+  
+  # zapisanie wylosowaniej wartości
   x_rea[k]<-x[ii]
+
   # generowanie y z rozkładu warunkowego
   u<-runif(1)
   jj<-1
@@ -33,9 +45,19 @@ for (k in 1:N){
   }
   y_rea[k]<-y[jj]
 }
+
+# dopisanie realizacji do macierzy realizacji
 mat_rea<-cbind(x_rea,y_rea)
 tab<-table(x_rea,y_rea)
+
+# normalizacja tablicy przez realizację zmiennej X
 (tab_r<-tab/length(x_rea))
+
+# wyznaczenie korelacji
 (r_p<-cor(x_rea,y_rea))
+
+# wyznaczenie korelacji rho Spearmana
 (r_s<-cor(x_rea,y_rea,method="spearman"))
+
+# wyznaczenie korelacji thau Kendalla
 (r_k<-cor(x_rea,y_rea,method="kendall"))
