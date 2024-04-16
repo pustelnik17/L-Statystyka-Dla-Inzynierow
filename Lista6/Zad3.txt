@@ -1,0 +1,106 @@
+# Hubert Jackowski
+# utworzenie nośników zmiennych losowych x - algebra, y - analiza
+x<-c(2, 3, 3.5, 4, 4.5, 5)
+y<-c(2, 3, 3.5, 4, 4.5, 5)
+
+# ustalenie rozmiarów macierzy do stworznia
+m<-length(x)
+n<-length(y)
+
+# utworzenie macierzy z prawdopodobieństwami
+pxy<-matrix(c(0.05, 0.05, 0.03, 0.01, 0, 0, 0.03, 0.07, 0.05, 0.04, 0.02, 0.01, 0.02, 0.05, 0.06, 0.06, 0.05, 0.01, 0, 0.03, 0.04, 0.06, 0.08, 0.02, 0, 0, 0.02, 0.02, 0.04, 0.03, 0, 0, 0, 0.01, 0.01, 0.03),nrow=m)
+
+# utworzenie wektorów na rozkłady brzegowe
+px<-array(0,dim=m)
+py<-array(0,dim=n)
+
+# utworzenie pustej macierzy
+pyc<-array(0,dim=c(m,n))
+
+# sumujemy wiersze wpisując p'stwa brzegowe
+for (i in 1:m){
+  px[i]<-sum(pxy[i,1:n])
+}
+
+# sumujemy kolumny wpisując p'stwa brzegowe
+for (j in 1:n){
+  py[j]<-sum(pxy[1:m,j])
+}
+
+# wyświetlenie rozkładów brzegowych
+px
+py
+
+# wyznaczenie wartości oczekiwanych dla zmiennych losowych
+ex<-sum(x*px)
+ey<-sum(y*py)
+
+# wyznaczenie drugiego momentu wartości oczekiwanych dla zmiennych losowych
+ex2<-sum(x*x*px)
+ey2<-sum(y*y*py)
+
+# wyznaczenie wariancji dla zmiennych losowych
+varx<-ex2-ex^2
+vary<-ey2-ey^2
+
+# rozkład oraz wartości x,y w postaci wektorowej
+(xv<-rep(x,times=n))
+(yv<-rep(y,each=m))
+(pv<-c(pxy))
+exy<-sum(pv*xv*yv)
+
+# wyznaczenie cowariancji
+covxy<-exy-ex*ey
+
+# wyznaczenie współczynnika korelacji
+(rhoxy<-covxy/(varx*vary)^0.5)
+for (i in 1:m){
+  pyc[i,]<-pxy[i,]/px[i]
+}
+pyc
+
+
+# wyznaczenie liczby elementów w rozkładzie łącznym 
+mn<-m*n
+
+# utworzenie wektoru p'stw skumulowanych
+s<-array(dim=mn)
+s[1]<-pv[1]
+for (i in 2:mn){
+  s[i]=s[i-1]+pv[i]
+}
+
+# stworzenie wektorów na realizacje
+x_rea<-array(dim=1000)
+y_rea<-array(dim=1000)
+
+# wylosowanie 1000 realizacji z U[0,1]
+r<-runif(1000)
+
+# transformacja liczby losowej z U[0,1] na realizację (X,Y) za pomocą wektoru p'stw skumulowanych
+for (j in 1:1000){
+  i<-1
+  while (r[j]>s[i]){
+    i<-i+1
+  }
+  x_rea[j]<-xv[i]
+  y_rea[j]<-yv[i]
+}
+
+# utworzenie macierzy realizacji
+mat_rea<-cbind(x_rea,y_rea)
+
+# utworzenie tablicy realizacji
+tab<-table(x_rea,y_rea)
+
+# normalizacja tablicy przez realizację zmiennej X
+(tab_r<-tab/length(x_rea))
+
+# wyznaczenie cor
+(r_p<-cor(px, py))
+
+# wyznaczenie cor rho Spearmana
+(r_s<-cor(px,py,method="spearman"))
+
+# wyznaczenie cor thau Kendalla
+(r_k<-cor(px,py,method="kendall"))
