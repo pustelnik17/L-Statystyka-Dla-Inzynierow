@@ -1,0 +1,12 @@
+# Hubert Jackowski
+
+# i)
+u1 <- runif(10000)
+u2 <- runif(10000)
+rea <- array(dim=10000)
+for(i in 1:10000){
+    rea[i] <- cos(2 * 3.14159 * u1[i]) * sqrt(-2 * log(u2[i], 2.7182))
+}
+rea
+
+# ii)
