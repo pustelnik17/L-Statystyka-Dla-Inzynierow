@@ -1,0 +1,4 @@
+# Hubert Jackowski
+
+# i)
+r <- rnorm(2000, 170, 12)
