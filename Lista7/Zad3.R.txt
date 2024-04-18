@@ -2,3 +2,38 @@
 
 # i)
 r <- rnorm(2000, 170, 12)
+
+# ii)
+for(i in 1:2000){
+    r[i] <- (r[i] - 170) / 12
+}
+est <- density(r)
+x <- seq(-4, 4, length.out=100)
+norm <- dnorm(x)
+
+plot(est, main="Porównanie estymatora jądrowego z gęstością rozkładu normalnego", xlab="Wartość zmiennej Z", ylab="Gęstość prawdopodobieństwa", ylim=c(0, max(est$y, norm)), type='l', col='blue')
+lines(x, norm, col='red')
+
+# iii)
+r <- rnorm(500, 170, 12)
+for(i in 1:500){
+    r[i] <- (r[i] - 170) / 12
+}
+est <- density(r)
+x <- seq(-4, 4, length.out=100)
+norm <- dnorm(x)
+
+plot(est, main="Porównanie estymatora jądrowego z gęstością rozkładu normalnego", xlab="Wartość zmiennej Z", ylab="Gęstość prawdopodobieństwa", ylim=c(0, max(est$y, norm)), type='l', col='blue')
+lines(x, norm, col='red')
+
+
+r <- rnorm(100, 170, 12)
+for(i in 1:100){
+    r[i] <- (r[i] - 170) / 12
+}
+est <- density(r)
+x <- seq(-4, 4, length.out=100)
+norm <- dnorm(x)
+
+plot(est, main="Porównanie estymatora jądrowego z gęstością rozkładu normalnego", xlab="Wartość zmiennej Z", ylab="Gęstość prawdopodobieństwa", ylim=c(0, max(est$y, norm)), type='l', col='blue')
+lines(x, norm, col='red')
