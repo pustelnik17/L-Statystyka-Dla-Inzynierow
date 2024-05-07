@@ -1,0 +1,65 @@
+# Hubert Jackowski
+
+waga<-read.csv2("D:/Users/student445-14/Downloads/L-Statystyka-Dla-Inzynierow-main/Lista8/waga1.csv")
+# tworzę N sztucznych prób o rozmiarze n
+N<-1000
+n<-length(waga$Wzrost)
+# sr[i] - średni wzrost dla i-tej sztucznej próby
+sr<-array(0,dim=N)
+alpha<-0.1
+for (i in 1:N){
+    # wybieram n obserwacji wzrostu (z zwracaniem)
+    w<-sample(waga$Wzrost,n,replace=TRUE)
+    sr[i]<-mean(w)
+}
+# wyznaczenie S.E.(X)
+se <- sd(sr)/sqrt(length(sr))
+# wyznaczenie wartości krytycznej Z(0.1/2)
+q <- qnorm(1 - 0.1/2)
+# wyznaczenie średniej z próby
+x <- mean(sr)
+# przedziały ufności
+pu <- c(x - (q_q * se), x + (q_q * se)))
+
+
+waga<-read.csv2("D:/Users/student445-14/Downloads/L-Statystyka-Dla-Inzynierow-main/Lista8/waga1.csv")
+# tworzę N sztucznych prób o rozmiarze n
+N<-1000
+n<-length(waga$Wzrost)
+# sr[i] - średni wzrost dla i-tej sztucznej próby
+sr<-array(0,dim=N)
+alpha<-0.1
+for (i in 1:N){
+    # wybieram n obserwacji wzrostu (z zwracaniem)
+    w<-sample(waga$Wzrost,n,replace=TRUE)
+    sr[i]<-mean(w)
+}
+# wyznaczenie S.E.(X)
+se <- sd(sr)/sqrt(length(sr))
+# wyznaczenie wartości krytycznej Z(0.1/2)
+q <- qt(0.9 / 2, df = length(sr) - 1)
+# wyznaczenie średniej z próby
+x <- mean(sr)
+# przedziały ufności
+pu <- c(x - (q_q * se), x + (q_q * se)))
+
+
+waga<-read.csv2("D:/Users/student445-14/Downloads/L-Statystyka-Dla-Inzynierow-main/Lista8/waga1.csv")
+# tworzę N sztucznych prób o rozmiarze n
+N<-1000
+n<-length(waga$Wzrost)
+# sr[i] - średni wzrost dla i-tej sztucznej próby
+sr<-array(0,dim=N)
+alpha<-0.1
+for (i in 1:N){
+    # wybieram n obserwacji wzrostu (z zwracaniem)
+    w<-sample(waga$Wzrost,n,replace=TRUE)
+    sr[i]<-mean(w)
+}
+countMean <- function(data, indices) {
+  mean(data[indices])
+}
+# Wykonaj próbkowanie bootstrapowe
+bootstrap <- boot(sr, countMean, R = 1000)
+# Oblicz przedział ufności na poziomie 90%
+pu <- quantile(bootstrap$t, c(0.05, 0.95))
