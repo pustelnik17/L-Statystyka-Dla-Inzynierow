@@ -1,8 +1,8 @@
 # Hubert Jackowski
 
-hyp <- 168
+hyp <- 4
 waga <-read.csv2("C:/Users/golde/OneDrive/Dokumenty/VPProjects/L-Statystyka-Dla-Inzynierow/Lista9/waga1.csv")
-sr <- waga$Wzrost
+sr <- subset(waga, plec == 0)$Waga_po - subset(waga, plec == 0)$Waga_przed
 
 # Test Z
 t <- (sqrt(length(sr)))*(mean(sr) - hyp)/(sd(sr))

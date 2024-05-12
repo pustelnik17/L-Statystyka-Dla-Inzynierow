@@ -1,25 +1,19 @@
 # Hubert Jackowski
 
 hyp <- 2
+waga <-read.csv2("C:/Users/golde/OneDrive/Dokumenty/VPProjects/L-Statystyka-Dla-Inzynierow/Lista9/waga1.csv")
+sr <- waga$Waga_po - waga$Waga_przed
 
 # Test Z
-waga <-read.csv2("D:/Users/student445-14/Downloads/L-Statystyka-Dla-Inzynierow-main/Lista9/waga1.csv")
-sr <- waga$Waga_po - waga$Waga_przed
 t <- (sqrt(length(sr)))*(mean(sr) - hyp)/(sd(sr))
 t
-p <- 2*(1-pnorm(t))
+p <- 2 * (1 - pnorm(abs(t)))
 p
 
 # Test Studenta
-waga <-read.csv2("D:/Users/student445-14/Downloads/L-Statystyka-Dla-Inzynierow-main/Lista9/waga1.csv")
-sr <- waga$Waga_po - waga$Waga_przed
 t <- (sqrt(length(sr)))*(mean(sr) - hyp)/(sd(sr))
 t
-p <- 2*(1-pt(t, 0.95))
-p
-p <- 2*(1-pt(t, 0.99))
-p
-p <- 2*(1-pt(t, 0.999))
+p <- 2 * (1 - pt(abs(t), df=length(sr) - 1))
 p
 
 # Test t.test
