@@ -1,4 +1,0 @@
-# Hubert Jackowski
-
-t <- (sqrt(1000) * (0.385 - 0.4))/sqrt(0.385 * (1 - 0.385))
-p <- 2 * (1 - pnorm(abs(t)))
