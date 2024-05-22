@@ -16,3 +16,4 @@ p
 
 ptest <- prop.test(x = 385, n = 1000, p = 0.40, alternative = "two.sided")
 ptest
+
