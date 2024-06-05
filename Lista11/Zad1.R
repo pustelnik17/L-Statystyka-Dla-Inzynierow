@@ -1,0 +1,18 @@
+# liczba kategorii
+k<-6
+# wektor z p'stwem każdej kategorii
+p<-1/k*rep(1,times=k)
+# wektor z frekwencjami
+m<-c(171,200,168,213,226,222)
+# liczba obserwacji
+n<-sum(m)
+# wektor z oczekiwanymi frekwencjami
+me<-n*p
+# realizacja statystyki testowej
+t<-sum((m-me)^2/me)
+
+t
+qchisq(0.95,k-1)
+
+# wartość p
+wp<-1-pchisq(t,k-1)
