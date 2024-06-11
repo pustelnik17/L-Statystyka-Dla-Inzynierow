@@ -1,0 +1,21 @@
+waga<-read.csv2("C:/Users/david/OneDrive/Dokumenty/statinz/waga1.csv")
+# tworzę N sztucznych prób o rozmiarze n
+N<-1000
+n<-length(waga$Wzrost)
+# sr[i] - średni wzrost dla i-tej sztucznej próby
+sr<-array(0,dim=N)
+alpha<-0.1
+for (i in 1:N){
+  # wybieram n obserwacji wzrostu (z zwracaniem)
+  w<-sample(waga$Wzrost,n,replace=TRUE)
+  sr[i]<-mean(w)
+}
+# uporządkuję te średnie
+sr<-sort(sr)
+# wy - liczba skrajnych średnich, którą należy wyrzucić (po obu stronach)
+wy<-N*alpha/2
+# dolna granica przedziału
+(dg<-sr[wy+1])
+# górna granica przedziału
+(gg<-sr[N-wy])
+

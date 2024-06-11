@@ -1,0 +1,9 @@
+# wyn - wyniki rzutu
+# u - 600 realizacji z U[0,1]
+wyn<-array(0,dim=600)
+u<-runif(600)
+wyn<-ceiling(6*u)
+(sr<-mean(wyn))
+(war<-var(wyn))
+(tab<-table(wyn))
+plot(tab)

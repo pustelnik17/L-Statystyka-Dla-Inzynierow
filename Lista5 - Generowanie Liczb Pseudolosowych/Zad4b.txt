@@ -1,0 +1,11 @@
+wyn<-array(0,dim=50)
+for (i in 1:50){
+  stop<-0
+  while (stop==0){
+    wyn[i]<-wyn[i]+1
+  u<-runif(1)
+  if (u<0.4){stop<-1}
+  }
+}
+wyn
+mean(wyn)

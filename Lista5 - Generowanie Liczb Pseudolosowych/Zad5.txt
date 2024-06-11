@@ -1,0 +1,13 @@
+wyn<-array(0,dim=50)
+srednia<-3
+for (i in 1:50){
+  u<-runif(1)
+  p<-exp(-srednia)
+  s<-p
+  while (u>s){
+    wyn[i]<-wyn[i]+1
+    p<-p*srednia/wyn[i]
+    s<-s+p
+  }
+}
+wyn

@@ -1,9 +1,0 @@
-# Hubert Jackowski
-
-# a)
-pnorm(164, 170, 12)
-1 - pnorm(188, 170, 12)
-pnorm(185, 170, 12) - pnorm(158, 170, 12)
-
-# b)
-qnorm(0.85, 170, 12)

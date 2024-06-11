@@ -1,0 +1,18 @@
+# wykonujemy 1000 symulacji
+ns<-1000
+# rozmiary prób oraz proporcje z prób
+nm<-52
+nk<-47
+pm<-20/52
+pk<-8/47
+alpha<-0.05
+# ile z najskrajniejszych wartości wyrzucamy (na obu krańcach) 
+od<-ns*alpha/2  
+# W każdej symulacji wylosujemy ile jest mężczyzn oraz kobiet wyższych od 170cm
+xsm<-rbinom(ns,nm,pm)
+xsk<-rbinom(ns,nk,pk)
+# roznice między proporcjami w każdej symulacji
+roz<-xsm/nm-xsk/nk
+roz<-sort(roz)
+(dg<-roz[od+1])
+(gg<-roz[ns-od])

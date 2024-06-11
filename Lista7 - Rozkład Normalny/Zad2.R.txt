@@ -1,0 +1,31 @@
+# Hubert Jackowski
+
+# i)
+u1 <- runif(10000)
+u2 <- runif(10000)
+rea <- array(dim=10000)
+for(i in 1:10000){
+    rea[i] <- cos(2 * 3.14159 * u1[i]) * sqrt(-2 * log(u2[i], 2.7182))
+}
+rea
+
+# ii)
+est <- density(rea)
+x <- seq(-4, 4, length.out=100)
+norm <- dnorm(x)
+
+plot(est, main="Porównanie estymatora jądrowego z gęstością rozkładu normalnego", xlab="Wartość zmiennej Z", ylab="Gęstość prawdopodobieństwa", ylim=c(0, max(est$y, norm)), type='l', col='blue')
+lines(x, norm, col='red')
+
+# iii)
+y <- array(dim=10000)
+for(i in 1:10000){
+    y[i] <- 100 + 15 * rea[i]
+}
+
+est <- density(y)
+x <- seq(60, 140, length.out=100)
+norm <- dnorm(x, 100, sqrt(15))
+
+plot(est, main="Porównanie estymatora jądrowego z gęstością rozkładu normalnego", xlab="Wartość zmiennej Z", ylab="Gęstość prawdopodobieństwa", ylim=c(0, max(est$y, norm)), type='l', col='blue')
+lines(x, norm, col='red')

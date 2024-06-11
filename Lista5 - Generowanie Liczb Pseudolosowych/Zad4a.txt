@@ -1,0 +1,6 @@
+wyn<-array(0,dim=100)
+for (i in 1:100){
+  u<-runif(10)
+  wyn[i]<-length(which(u<0.3))
+}
+wyn

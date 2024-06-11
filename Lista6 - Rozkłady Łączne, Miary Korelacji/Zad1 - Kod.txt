@@ -1,0 +1,40 @@
+# nośniki zmiennych
+x<-c(0,1)
+y<-c(0,1,2)
+#rozmiary macierzy
+m<-length(x)
+n<-length(y)
+pxy<-matrix(c(1/8,1/6,1/4,1/6,1/8,1/6),nrow=m)
+# rozkłady brzegowe
+px<-array(0,dim=m)
+py<-array(0,dim=n)
+# rozkłady warunkowe y -pierwszy wiersz P(Y=y|X=0)
+# drugi P(Y=y|X=1)
+pyc<-array(0,dim=c(m,n))
+for (i in 1:m){
+  px[i]<-sum(pxy[i,1:n])
+}
+for (j in 1:n){
+  py[j]<-sum(pxy[1:m,j])
+}
+px
+py
+# wartości oczekiwane
+ex<-sum(x*px)
+ey<-sum(y*py)
+ex2<-sum(x*x*px)
+ey2<-sum(y*y*py)
+varx<-ex2-ex^2
+vary<-ey2-ey^2
+# rozkład oraz wartości x,y w postaci wektorowej
+(xv<-rep(x,times=n))
+(yv<-rep(y,each=m))
+(pv<-c(pxy))
+exy<-sum(pv*xv*yv)
+covxy<-exy-ex*ey
+# współczynnik korelacji
+(rhoxy<-covxy/(varx*vary)^0.5)
+for (i in 1:m){
+  pyc[i,]<-pxy[i,]/px[i]
+}
+pyc

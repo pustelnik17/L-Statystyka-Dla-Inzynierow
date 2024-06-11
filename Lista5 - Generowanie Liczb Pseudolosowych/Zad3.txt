@@ -1,0 +1,23 @@
+# wektor p'stw uporządkowanych
+p<-c(0.4,0.3,0.2,0.1)
+# x - wartości odpowiadające tym p'stwom
+x<-c(1,0,2,3)
+k<-length(p)
+n<-1000
+wyn<-array(0,dim=n)
+# s - wektor p'stw skumulowanych (s[1]=p[1],s[2]=p[1]+p[2]....,itp.)
+s[1]=p[1]
+for (i in 2:k){
+  s[i]=s[i-1]+p[i]
+}
+u<-runif(n)
+for (j in 1:n){
+  i<-1
+  while (u[j]>s[i]){
+    i<-i+1
+  }
+  wyn[j]<-x[i]
+}
+(sr<-mean(wyn))
+(os<-sd(wyn))
+(tab<-table(wyn))

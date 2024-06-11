@@ -1,0 +1,12 @@
+# korzystam z faktu że suma n zmiennych o 
+# rozkładzie Exp(a) ma rozkład Gamma(n,a)
+n<-200
+s<-rgamma(1000,n,0.5)
+# E(S_n)=2n, Var(S_n)=4n, SD(S_n)=2n^0.5
+mu<-2*n
+sd<-2*n^0.5
+z<-(s-mu)/sd
+wyk<-density(z)
+plot(wyk)
+x<-(-400:400)*0.01
+lines(x,dnorm(x,0,1),col="red")

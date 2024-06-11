@@ -1,0 +1,12 @@
+# Dla n=30, p=0.05
+n<-30
+x<-0:n
+p<-0.5
+# wartość oczekiwana oraz odchylenie
+mu<-n*p
+war<-mu*(1-p)
+sd<-war^0.5
+s<-rbinom(10000,n,p)
+(rfrek<-table(s)/length(s))
+plot(rfrek)
+lines(x,dnorm(x,mu,sd),col="red")

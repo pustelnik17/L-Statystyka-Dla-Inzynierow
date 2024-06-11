@@ -1,0 +1,23 @@
+waga<-read.csv2("C:/Users/david/OneDrive/Dokumenty/statinz/waga1.csv")
+# tworzę N sztucznych prób o rozmiarze n
+N<-1000
+pr<-array(0,dim=N)
+n<-length(waga$Wzrost)
+# w każdej sztucznej próbie, p'stwo że ktoś ma wzrost > 168 równa się 
+# proporcji z próby, p
+x<-length(which(waga$Wzrost>168))
+p<-x/n
+# pr[i] - proporcja dla i-tej sztucznej próby
+alpha<-0.06
+for (i in 1:N){
+  u<-runif(n)
+  pr[i]<-length(which(u<p))/n
+}
+# uporządkuję te proporcje
+pr<-sort(pr)
+# wy - liczba skrajnych średnich, którą należy wyrzucić (po obu stronach)
+wy<-N*alpha/2
+# dolna granica przedziału
+(dg<-pr[wy+1])
+# górna granica przedziału
+(gg<-pr[N-wy])
